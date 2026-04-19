@@ -1,47 +1,59 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
+
 package SISeminar;
 
-/**
- *
- * @author Hype G12
- */
+
 public class Pemesanan_Tiket {
 
-    String idTiket;
-    String namaPeserta;
-    String email;
-    String seminar;
-    int jumlahTiket;
-    double harga;
-    String metodePembayaran = "QRIS";
+    private String idTiket;
+    private String nama;
+    private String email;
+    private String seminar;
+    private int jumlah;
+    private double harga;
 
-    void inputData(String id, String nama, String mail, String sem, int jumlah, double hrg) {
-        idTiket = id;
-        namaPeserta = nama;
-        email = mail;
-        seminar = sem;
-        jumlahTiket = jumlah;
-        harga = hrg;
+    // Constructor
+    public Pemesanan_Tiket(String idTiket, String nama, String email, String seminar, int jumlah, double harga) {
+        this.idTiket = idTiket;
+        this.nama = nama;
+        this.email = email;
+        this.seminar = seminar;
+        this.jumlah = jumlah;
+        this.harga = harga;
     }
 
-    double hitungTotal() {
-        return jumlahTiket * harga;
+    // Overloading Method
+    public double hitungTotal() {
+        return jumlah * harga;
     }
 
-    void cetakTiket() {
-        System.out.println();
-        System.out.println("===== TIKET SEMINAR =====");
-        System.out.println("ID Tiket        : " + idTiket);
-        System.out.println("Nama Peserta    : " + namaPeserta);
-        System.out.println("Email           : " + email);
-        System.out.println("Seminar         : " + seminar);
-        System.out.println("Jumlah Tiket    : " + jumlahTiket);
-        System.out.println("Harga Tiket     : " + harga);
-        System.out.println("Total Bayar     : " + hitungTotal());
-        System.out.println("Metode Bayar    : " + metodePembayaran);
-        System.out.println("==========================");
+    public double hitungTotal(double diskon) {
+        return (jumlah * harga) - diskon;
     }
+
+    public double hitungTotal(double pajak, boolean isPajak) {
+        if (isPajak) {
+            return (jumlah * harga) + pajak;
+        }
+        return jumlah * harga;
+    }
+
+    // Getter & Setter
+    public String getIdTiket() { return idTiket; }
+    public void setIdTiket(String idTiket) { this.idTiket = idTiket; }
+
+    public String getNama() { return nama; }
+    public void setNama(String nama) { this.nama = nama; }
+
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
+
+    public String getSeminar() { return seminar; }
+    public void setSeminar(String seminar) { this.seminar = seminar; }
+
+    public int getJumlah() { return jumlah; }
+    public void setJumlah(int jumlah) { this.jumlah = jumlah; }
+
+    public double getHarga() { return harga; }
+    public void setHarga(double harga) { this.harga = harga; }
 }

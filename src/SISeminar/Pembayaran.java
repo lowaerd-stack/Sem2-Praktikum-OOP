@@ -8,19 +8,39 @@ package SISeminar;
  *
  * @author Hype G12
  */
+
 public class Pembayaran {
 
-    String metodePembayaran;
-    double totalBayar;
+    // Atribut
+    private String metodePembayaran;
+    private double totalBayar;
 
     // Constructor
-    public Pembayaran(String metode, double total) {
-        metodePembayaran = metode;
-        totalBayar = total;
+    public Pembayaran(String metodePembayaran, double totalBayar) {
+        this.metodePembayaran = metodePembayaran;
+        this.totalBayar = totalBayar;
     }
 
-    void tampilPembayaran() {
-        System.out.println("Metode Bayar : " + metodePembayaran);
-        System.out.println("Total Bayar  : " + totalBayar);
+    // Method (akan dioverride)
+    public String tampilPembayaran() {
+        return "Metode: " + metodePembayaran +
+               "\nTotal: " + totalBayar;
+    }
+
+    // Getter & Setter
+    public String getMetodePembayaran() {
+        return metodePembayaran;
+    }
+
+    public void setMetodePembayaran(String metodePembayaran) {
+        this.metodePembayaran = metodePembayaran;
+    }
+
+    public double getTotalBayar() {
+        return totalBayar;
+    }
+
+    public void setTotalBayar(double totalBayar) {
+        this.totalBayar = totalBayar;
     }
 }
