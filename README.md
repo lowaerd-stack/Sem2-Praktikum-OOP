@@ -50,11 +50,17 @@ Aplikasi ini memungkinkan pengguna untuk melakukan pemesanan tiket seminar denga
 
 ## 📂 Struktur Project
 SISeminar/
+
 │── Pemesanan_Tiket.java
+
 │── Pembayaran.java
+
 │── PembayaranQRIS.java
+
 │── PembayaranTransfer.java
+
 │── CetakTiket.java
+
 │── FormTiketGUI.java
 
 
@@ -77,6 +83,7 @@ SISeminar/
 
 3. Jalankan:
 
+---
 ## 👨‍💻 Author
 
 - Nama  : Dit Enkeb Lowaer  
