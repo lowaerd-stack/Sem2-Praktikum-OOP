@@ -1,11 +1,12 @@
 # 🎫 Sistem Pemesanan Tiket Seminar Online
 
 <p align="center">
-  <img src="gui.png" width="400"/>
+  <img src="gui.png" width="450"/>
 </p>
 
 <p align="center">
-  Aplikasi Java GUI berbasis Object Oriented Programming (OOP) untuk pemesanan tiket seminar secara interaktif.
+  <b>Aplikasi Java GUI berbasis Object Oriented Programming (OOP)</b><br>
+  Untuk pemesanan tiket seminar secara interaktif dan terstruktur
 </p>
 
 ---
@@ -13,7 +14,19 @@
 ## 📌 Tentang Project
 
 Project ini dibuat sebagai bagian dari Praktikum OOP Semester 2.  
-Aplikasi ini memungkinkan pengguna untuk melakukan pemesanan tiket seminar dengan tampilan GUI yang sederhana dan mudah digunakan.
+Aplikasi ini memungkinkan pengguna untuk melakukan pemesanan tiket seminar dengan tampilan GUI yang sederhana, interaktif, dan mudah digunakan.
+
+---
+
+## 🎯 Tujuan Pengimplementasian
+
+Adapun tujuan dari pengimplementasian aplikasi ini adalah:
+
+1. Mengimplementasikan konsep Object Oriented Programming (OOP) seperti enkapsulasi, inheritance, dan polymorphism.  
+2. Meningkatkan pemahaman penggunaan Java GUI (Swing).  
+3. Mengembangkan sistem pemesanan tiket yang terstruktur dan efisien.  
+4. Melatih pengolahan data menggunakan JTable.  
+5. Membiasakan penggunaan Git dan GitHub sebagai version control.  
 
 ---
 
@@ -31,11 +44,11 @@ Aplikasi ini memungkinkan pengguna untuk melakukan pemesanan tiket seminar denga
 
 ## 🧠 Konsep OOP yang Digunakan
 
-| Konsep | Implementasi |
-|--------|-------------|
-| Enkapsulasi | Atribut private + getter/setter |
-| Inheritance | Pembayaran → QRIS & Transfer |
-| Polymorphism | Overloading & Overriding |
+| Konsep        | Implementasi                          |
+|--------------|--------------------------------------|
+| Enkapsulasi  | Atribut private + getter/setter      |
+| Inheritance  | Pembayaran → QRIS & Transfer         |
+| Polymorphism | Overloading & Overriding             |
 
 ---
 
@@ -49,6 +62,7 @@ Aplikasi ini memungkinkan pengguna untuk melakukan pemesanan tiket seminar denga
 ---
 
 ## 📂 Struktur Project
+
 SISeminar/
 
 │── Pemesanan_Tiket.java
