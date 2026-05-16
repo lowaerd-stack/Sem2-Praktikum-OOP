@@ -11,36 +11,22 @@ package SISeminar;
 
 public class Pembayaran {
 
-    // Atribut
-    private String metodePembayaran;
-    private double totalBayar;
+protected double totalBayar;
+protected String metodePembayaran;
 
-    // Constructor
-    public Pembayaran(String metodePembayaran, double totalBayar) {
-        this.metodePembayaran = metodePembayaran;
-        this.totalBayar = totalBayar;
-    }
-
-    // Method (akan dioverride)
-    public String tampilPembayaran() {
-        return "Metode: " + metodePembayaran +
-               "\nTotal: " + totalBayar;
-    }
-
-    // Getter & Setter
-    public String getMetodePembayaran() {
-        return metodePembayaran;
-    }
-
-    public void setMetodePembayaran(String metodePembayaran) {
-        this.metodePembayaran = metodePembayaran;
-    }
-
-    public double getTotalBayar() {
-        return totalBayar;
-    }
-
-    public void setTotalBayar(double totalBayar) {
-        this.totalBayar = totalBayar;
-    }
+// Constructor
+public Pembayaran(double totalBayar, String metodePembayaran) {
+this.totalBayar = totalBayar;
+this.metodePembayaran = metodePembayaran;
 }
+
+// Method polymorphism
+public String tampilPembayaran() {
+return "Metode Pembayaran : " + metodePembayaran;
+}
+
+public String getMetodePembayaran() {
+return metodePembayaran;
+}
+}
+

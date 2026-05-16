@@ -199,10 +199,11 @@ public class FormTiketGUI extends javax.swing.JFrame {
                     .addComponent(jLabel6)
                     .addComponent(cmbPembayaran, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnHapus, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSimpan)
-                    .addComponent(btnBatal))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnHapus, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnSimpan)
+                        .addComponent(btnBatal)))
                 .addGap(47, 47, 47)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -224,51 +225,72 @@ public class FormTiketGUI extends javax.swing.JFrame {
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
         // TODO add your handling code here:                                         
     try {
+
         String nama = txtNama.getText();
         String email = txtEmail.getText();
-        int jumlah = Integer.parseInt(txtJumlah.getText());
         String seminar = cmbSeminar.getSelectedItem().toString();
-        String metode = cmbPembayaran.getSelectedItem().toString();
+
+        int jumlah = Integer.parseInt(txtJumlah.getText());
 
         double harga = 0;
 
         if (seminar.equals("Artificial Intelligence")) {
-            harga = 150000;
+            harga = 50000;
         } else if (seminar.equals("Cyber Security")) {
-            harga = 200000;
-        } else {
-            harga = 180000;
+            harga = 75000;
+        } else if (seminar.equals("Web Development")) {
+            harga = 60000;
         }
 
-        String id = "SMR" + (1000 + new java.util.Random().nextInt(9000));
-
-        // Object tiket
-        Pemesanan_Tiket pesan = new Pemesanan_Tiket(id, nama, email, seminar, jumlah, harga);
-
-        // Object pembayaran
-        Pembayaran bayar;
-        if (metode.equals("QRIS")) {
-            bayar = new PembayaranQRIS(pesan.hitungTotal(), "QR123XYZ");
-        } else {
-            bayar = new PembayaranTransfer(pesan.hitungTotal(), "BCA");
+        if (jumlah <= 0) {
+            throw new ArithmeticException();
         }
 
-        // Masukkan ke JTable
-        DefaultTableModel model = (DefaultTableModel) tableTiket.getModel();
+        Pemesanan_Tiket tiket = new Pemesanan_Tiket(
+                "TKT001", nama, email, seminar, jumlah, harga);
+
+        Pembayaran pembayaran;
+
+        if (cmbPembayaran.getSelectedItem().equals("QRIS")) {
+            pembayaran = new PembayaranQRIS(tiket.hitungTotal(), "QR123");
+        } else {
+            pembayaran = new PembayaranTransfer(tiket.hitungTotal(), "BCA");
+        }
+
+        DefaultTableModel model =
+                (DefaultTableModel) tableTiket.getModel();
+
         model.addRow(new Object[]{
-            pesan.getIdTiket(),
-            pesan.getNama(),
-            pesan.getEmail(),
-            pesan.getSeminar(),
-            pesan.getJumlah(),
-            pesan.hitungTotal(),
-            bayar.getMetodePembayaran()
+            "TKT001",
+            nama,
+            email,
+            seminar,
+            tiket.hitungTotal(),
+            pembayaran.getMetodePembayaran()
         });
 
-        JOptionPane.showMessageDialog(this, "Data berhasil disimpan!");
+        JOptionPane.showMessageDialog(this,
+                "Data berhasil disimpan!");
+
+    } catch (NumberFormatException e) {
+
+        JOptionPane.showMessageDialog(null,
+                "Jumlah tiket harus angka!",
+                "Warning",
+                JOptionPane.WARNING_MESSAGE);
+
+    } catch (ArithmeticException e) {
+
+        JOptionPane.showMessageDialog(null,
+                "Jumlah tiket tidak boleh nol!",
+                "Warning",
+                JOptionPane.WARNING_MESSAGE);
 
     } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "Input tidak valid!");
+
+        JOptionPane.showMessageDialog(null,
+                "Terjadi kesalahan : " + e.getMessage());
+
     }
 
     }//GEN-LAST:event_btnSimpanActionPerformed
@@ -298,13 +320,13 @@ public class FormTiketGUI extends javax.swing.JFrame {
     int row = tableTiket.getSelectedRow();
 
     if (row != -1) {
+
         String id = tableTiket.getValueAt(row, 0).toString();
         String nama = tableTiket.getValueAt(row, 1).toString();
         String email = tableTiket.getValueAt(row, 2).toString();
         String seminar = tableTiket.getValueAt(row, 3).toString();
-        String jumlah = tableTiket.getValueAt(row, 4).toString();
-        String total = tableTiket.getValueAt(row, 5).toString();
-        String metode = tableTiket.getValueAt(row, 6).toString();
+        String total = tableTiket.getValueAt(row, 4).toString();
+        String metode = tableTiket.getValueAt(row, 5).toString();
 
         String tiket =
                 "===== TIKET SEMINAR =====\n" +
@@ -312,7 +334,6 @@ public class FormTiketGUI extends javax.swing.JFrame {
                 "Nama       : " + nama + "\n" +
                 "Email      : " + email + "\n" +
                 "Seminar    : " + seminar + "\n" +
-                "Jumlah     : " + jumlah + "\n" +
                 "Total Bayar: " + total + "\n" +
                 "Metode     : " + metode + "\n" +
                 "========================";
@@ -320,7 +341,10 @@ public class FormTiketGUI extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, tiket);
 
     } else {
-        JOptionPane.showMessageDialog(this, "Pilih data di tabel dulu!");
+
+        JOptionPane.showMessageDialog(this,
+                "Pilih data di tabel dulu!");
+
     }
 
     }//GEN-LAST:event_btnCetakActionPerformed

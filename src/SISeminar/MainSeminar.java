@@ -50,7 +50,6 @@ public class MainSeminar {
 
         System.out.print("Jumlah Tiket : ");
         int jumlah = input.nextInt();
-
         // Buat objek tiket
         Pemesanan_Tiket pesan = new Pemesanan_Tiket(idTiket, nama, email, seminar, jumlah, harga);
 
